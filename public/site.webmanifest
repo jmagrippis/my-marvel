@@ -1,0 +1,14 @@
+{
+    "name": "My Marvel",
+    "short_name": "My Marvel",
+    "icons": [
+        {
+            "src": "/android-chrome-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ed1d24",
+    "background_color": "#ed1d24",
+    "display": "standalone"
+}

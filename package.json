@@ -1,0 +1,69 @@
+{
+  "name": "my-marvel",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3600",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest",
+    "e2e": "cypress run",
+    "bdd": "cypress open",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src"
+  },
+  "dependencies": {
+    "@vercel/node": "^1.8.4",
+    "autoprefixer": "^10.0.1",
+    "axios": "^0.21.0",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.20",
+    "luxon": "^1.25.0",
+    "next": "^10.0.0",
+    "next-compose-plugins": "^2.2.0",
+    "next-seo": "^4.14.0",
+    "next-svgr": "^0.0.2",
+    "postcss-import": "^13.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-query": "^2.25.2",
+    "react-spring": "^8.0.27",
+    "tailwindcss": "^1.9.6"
+  },
+  "devDependencies": {
+    "@testing-library/cypress": "^7.0.1",
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^26.0.15",
+    "@types/lodash": "^4.14.162",
+    "@types/luxon": "^1.25.0",
+    "@types/react": "^16.9.53",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
+    "babel-eslint": "^10.0.0",
+    "babel-jest": "^26.6.1",
+    "cypress": "^5.5.0",
+    "eslint": "^7.5.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.0.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "eslint-plugin-testing-library": "^3.9.0",
+    "husky": "^4.3.0",
+    "jest": "^26.6.1",
+    "now": "^20.1.2",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.1.0",
+    "typescript": "^4.1.0-0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && pretty-quick --staged"
+    }
+  },
+  "license": "MIT"
+}
