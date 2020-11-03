@@ -2,12 +2,7 @@ module.exports = {
   purge: {
     mode: 'layers',
     layers: ['components', 'utilities'],
-    content: [
-      './components/**/*.tsx',
-      './components/**/*.css',
-      './pages/**/*.tsx',
-      './pages/**/*.css',
-    ],
+    content: ['./src/**/*.tsx', './src/**/*.css'],
   },
   corePlugins: {
     fontFamily: false,
