@@ -14,7 +14,6 @@ describe('home', () => {
           const text = $footer.text()
 
           expect(text).to.include('Data provided by Marvel. © 2014 Marvel')
-          expect(text).not.to.include('bar')
         })
       })
     })
