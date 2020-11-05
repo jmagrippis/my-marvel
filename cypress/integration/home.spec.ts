@@ -10,10 +10,20 @@ describe('home', () => {
 
         cy.findByRole('heading', { name: 'my Marvel' }).should('exist')
 
-        cy.findByRole('contentinfo').should(($footer) => {
-          const text = $footer.text()
+        cy.findByRole('contentinfo').within(($footer) => {
+          cy.findByRole('link', {
+            name: 'Data provided by Marvel. © 2014 Marvel',
+          }).should(($link) => {
+            const href = $link.attr('href')
+            expect(href).to.equal('https://marvel.com')
+          })
 
-          expect(text).to.include('Data provided by Marvel. © 2014 Marvel')
+          cy.findByRole('link', {
+            name: /jmagrippis/,
+          }).should(($link) => {
+            const href = $link.attr('href')
+            expect(href).to.equal('https://magrippis.com')
+          })
         })
       })
     })
