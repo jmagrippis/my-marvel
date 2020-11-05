@@ -9,7 +9,7 @@
     "test": "jest",
     "e2e": "cypress run",
     "bdd": "cypress open",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx src"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src cypress"
   },
   "dependencies": {
     "@vercel/node": "^1.8.4",
