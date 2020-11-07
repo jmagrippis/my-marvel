@@ -8,7 +8,7 @@ export const Header = () => {
   const HomeElement = pathname === '/' ? 'h1' : 'div'
 
   return (
-    <header className="w-full bg-marvel-red text-white">
+    <header className="w-full bg-marvel-red text-white mb-4">
       <nav className="m-auto container flex flex-col sm:flex-row items-center py-2">
         <HomeElement className="flex-grow">
           <Link href="/">

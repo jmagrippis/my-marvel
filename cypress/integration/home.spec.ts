@@ -26,6 +26,41 @@ describe('home', () => {
           })
         })
       })
+
+      it('shows the latest events', () => {
+        cy.viewport(layout)
+
+        cy.visit('/')
+
+        cy.findByRole('list').within(($main) => {
+          cy.findAllByRole('listitem').should('have.lengthOf', 10)
+          cy.findAllByRole('article').should('have.lengthOf', 10)
+          cy.findAllByRole('heading').should('have.lengthOf', 10)
+          cy.findAllByRole('img').should('have.lengthOf', 10)
+        })
+      })
+    })
+  })
+
+  describe('only on iphone-x', () => {
+    it('has a short heading', () => {
+      cy.viewport('iphone-x')
+
+      cy.visit('/')
+
+      cy.findByRole('heading', { name: 'Latest events' }).should('exist')
+    })
+  })
+
+  describe('only on macbook-13 and wider', () => {
+    it('has a long heading', () => {
+      cy.viewport('macbook-13')
+
+      cy.visit('/')
+
+      cy.findByRole('heading', { name: 'Explore our latest events' }).should(
+        'exist'
+      )
     })
   })
 })
