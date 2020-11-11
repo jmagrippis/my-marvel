@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from 'react-query'
 
+import { queryCache } from 'components/queryCache'
 import { client } from './client'
 import { MarvelEvent } from './types'
 
@@ -16,31 +17,32 @@ export type EventsResponse = {
 
 const LIMIT = 10
 
-const offsetToEtagCache: { [offset: number]: string } = {}
+const fetchEvents = async (key: string, offset = 0) => {
+  const cachedResponse = queryCache
+    .getQueryData<EventsResponse[]>(key)
+    ?.find((response) => response.data.offset === offset)
 
-const fetchEvents = (_key: string, offset = 0) =>
-  client
-    .get<EventsResponse>('events', {
-      params: {
-        offset,
-        limit: LIMIT,
-        orderBy: '-modified',
-      },
-      headers: {
-        'If-None-Match': offsetToEtagCache[offset],
-      },
-    })
-    .then(({ data }) => {
-      offsetToEtagCache[offset] = data.etag
+  const { data, status } = await client.get<EventsResponse>('events', {
+    params: {
+      offset,
+      limit: LIMIT,
+      orderBy: '-modified',
+    },
+    headers: {
+      'If-None-Match': cachedResponse?.etag,
+    },
+    validateStatus: (status) =>
+      (status >= 200 && status < 300) || status === 304,
+  })
 
-      return data.data
-    })
+  return status === 304 ? cachedResponse : data
+}
 
 export const useEvents = () =>
-  useInfiniteQuery<EventsResponse['data']>('events', fetchEvents, {
+  useInfiniteQuery<EventsResponse>('events', fetchEvents, {
     getFetchMore: (lastGroup) => {
-      const nextOffset = lastGroup.offset + LIMIT
+      const nextOffset = lastGroup.data.offset + LIMIT
 
-      return nextOffset <= lastGroup.total ? nextOffset : false
+      return nextOffset <= lastGroup.data.total ? nextOffset : false
     },
   })
