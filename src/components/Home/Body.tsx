@@ -12,8 +12,11 @@ import { useEffect } from 'react'
 
 const BelowTheFold = dynamic(() => import('./BelowTheFold'))
 
-const reduceEventsResponse = (data: EventsResponse['data'][]): MarvelEvent[] =>
-  data.reduce<MarvelEvent[]>((acc, group) => [...acc, ...group.results], [])
+const reduceEventsResponse = (data: EventsResponse[]): MarvelEvent[] =>
+  data.reduce<MarvelEvent[]>(
+    (acc, group) => [...acc, ...group.data.results],
+    []
+  )
 
 export const Body = () => {
   const { data, status, fetchMore, canFetchMore } = useEvents()
