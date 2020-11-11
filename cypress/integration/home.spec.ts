@@ -37,6 +37,12 @@ describe('home', () => {
           cy.findAllByRole('article').should('have.lengthOf', 10)
           cy.findAllByRole('heading').should('have.lengthOf', 10)
           cy.findAllByRole('img').should('have.lengthOf', 10)
+
+          cy.findAllByRole('listitem').last().scrollIntoView()
+        })
+
+        cy.findByRole('list').within(($main) => {
+          cy.findAllByRole('listitem').should('have.lengthOf', 20)
         })
       })
     })
