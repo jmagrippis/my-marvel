@@ -1,10 +1,10 @@
-import { testedLayouts } from '../testedLayouts'
+import { testedViewports } from '../testedViewports'
 
 describe('home', () => {
-  testedLayouts.forEach((layout) => {
-    describe(`on ${layout}`, () => {
+  testedViewports.forEach((viewport) => {
+    describe(`on ${viewport}`, () => {
       it('shows the home page with legal information', () => {
-        cy.viewport(layout)
+        cy.viewport(viewport)
 
         cy.visit('/')
 
@@ -28,7 +28,7 @@ describe('home', () => {
       })
 
       it('shows the latest events', () => {
-        cy.viewport(layout)
+        cy.viewport(viewport)
 
         cy.visit('/')
 
