@@ -13,6 +13,7 @@ export const EventsList: FC<Props> = ({ events, lastElementRef }) => (
     {events.map(({ id, title, description, thumbnail }, i) => (
       <li key={id} ref={i === events.length - 1 ? lastElementRef : undefined}>
         <EventItem
+          id={id}
           title={title}
           thumbnail={thumbnail}
           description={description}

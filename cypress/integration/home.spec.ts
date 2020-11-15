@@ -27,7 +27,7 @@ describe('home', () => {
         })
       })
 
-      it('shows the latest events', () => {
+      it('shows the latest events and can navigate to them', () => {
         cy.viewport(viewport)
 
         cy.visit('/')
@@ -37,12 +37,36 @@ describe('home', () => {
           cy.findAllByRole('article').should('have.lengthOf', 10)
           cy.findAllByRole('heading').should('have.lengthOf', 10)
           cy.findAllByRole('img').should('have.lengthOf', 10)
+          cy.findAllByRole('link', { name: /read more/i }).should(
+            'have.lengthOf',
+            10
+          )
 
           cy.findAllByRole('listitem').last().scrollIntoView()
         })
 
         cy.findByRole('list').within(($main) => {
           cy.findAllByRole('listitem').should('have.lengthOf', 20)
+
+          let title: string
+          cy.findAllByRole('listitem')
+            .first()
+            .within(() => {
+              cy.findByRole('heading')
+                .scrollIntoView()
+                .should(($title) => {
+                  title = $title.text()
+                  expect(title).to.contain('')
+                })
+              cy.findByRole('link', { name: /read more/i }).click({
+                force: true,
+              })
+            })
+            .then(() => {
+              cy.url().should('include', '/event')
+
+              cy.title().should('include', title)
+            })
         })
       })
     })

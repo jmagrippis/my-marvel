@@ -3,11 +3,11 @@ import dynamic from 'next/dynamic'
 import { useInView } from 'react-intersection-observer'
 
 import { Loading } from 'components/Loading'
-import { EventsResponse, useEvents } from 'marvelApi/useEvents'
+import { useEvents } from 'marvelApi/useEvents'
 import { EventsList } from './EventsList/EventsList'
 
 import { ResponsiveHeading } from './ResponsiveTitle'
-import { MarvelEvent } from 'marvelApi/types'
+import { EventsResponse, MarvelEvent } from 'marvelApi/types'
 import { useEffect } from 'react'
 
 const BelowTheFold = dynamic(() => import('./BelowTheFold'))
