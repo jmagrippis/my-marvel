@@ -8,7 +8,9 @@ describe('home', () => {
 
         cy.visit('/')
 
-        cy.findByRole('heading', { name: 'my Marvel' }).should('exist')
+        cy.findByRole('heading', { name: 'my Marvel', level: 1 }).should(
+          'exist'
+        )
 
         cy.findByRole('contentinfo').within(($footer) => {
           cy.findByRole('link', {
@@ -35,7 +37,7 @@ describe('home', () => {
         cy.findByRole('list').within(($main) => {
           cy.findAllByRole('listitem').should('have.lengthOf', 10)
           cy.findAllByRole('article').should('have.lengthOf', 10)
-          cy.findAllByRole('heading').should('have.lengthOf', 10)
+          cy.findAllByRole('heading', { level: 3 }).should('have.lengthOf', 10)
           cy.findAllByRole('img').should('have.lengthOf', 10)
           cy.findAllByRole('link', { name: /read more/i }).should(
             'have.lengthOf',
@@ -78,7 +80,9 @@ describe('home', () => {
 
       cy.visit('/')
 
-      cy.findByRole('heading', { name: 'Latest events' }).should('exist')
+      cy.findByRole('heading', { name: 'Latest events', level: 2 }).should(
+        'exist'
+      )
     })
   })
 
@@ -88,9 +92,10 @@ describe('home', () => {
 
       cy.visit('/')
 
-      cy.findByRole('heading', { name: 'Explore our latest events' }).should(
-        'exist'
-      )
+      cy.findByRole('heading', {
+        name: 'Explore our latest events',
+        level: 2,
+      }).should('exist')
     })
   })
 })
