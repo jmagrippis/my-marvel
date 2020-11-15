@@ -8,6 +8,7 @@ module.exports = {
     fontFamily: false,
   },
   variants: {
+    borderColor: ['hover'],
     borderStyle: ['responsive', 'focus'],
     backgroundColor: ['even'],
   },

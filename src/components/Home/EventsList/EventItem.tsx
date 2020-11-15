@@ -1,9 +1,10 @@
 import { getImagePath, ImageRatio } from 'lib/getImagePath'
 import { MarvelEvent } from 'marvelApi/types'
+import Link from 'next/link'
 
-type Props = Pick<MarvelEvent, 'title' | 'description' | 'thumbnail'>
+type Props = Pick<MarvelEvent, 'id' | 'title' | 'description' | 'thumbnail'>
 
-export const EventItem = ({ title, description, thumbnail }: Props) => (
+export const EventItem = ({ id, title, description, thumbnail }: Props) => (
   <article className="grid grid-cols-1 sm:grid-cols-3 gap-2 pb-2 sm:pb-0 border-b sm:border-b-0 border-red-200">
     <img
       src={getImagePath(thumbnail, ImageRatio.PortraitIncredible)}
@@ -13,7 +14,12 @@ export const EventItem = ({ title, description, thumbnail }: Props) => (
     />
     <div className="col-span-2">
       <h3 className="text-xl font-bold">{title}</h3>
-      <p>{description}</p>
+      <p className="mb-2">{description}</p>
+      <Link href={`/event/${id}`}>
+        <a className="text-lg bg-marvel-red border-2 border-red-500 hover:border-red-700 text-white shadow rounded px-4 py-1 hover:shadow-lg transition duration-300 mx-auto block sm:inline-block text-center">
+          read more
+        </a>
+      </Link>
     </div>
   </article>
 )
