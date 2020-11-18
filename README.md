@@ -1,6 +1,7 @@
 # My Marvel
 
-[![CI](https://github.com/jmagrippis/my-marvel/workflows/CI/badge.svg)](https://github.com/jmagrippis/my-marvel/actions)
+[![main](https://github.com/jmagrippis/my-marvel/workflows/main/badge.svg)](https://github.com/jmagrippis/my-marvel/actions)
+[![E2E](https://github.com/jmagrippis/my-marvel/workflows/E2E/badge.svg)](https://github.com/jmagrippis/my-marvel/actions)
 
 An app to query the [Marvel API] for your favourite events and characters!
 
@@ -63,6 +64,32 @@ The testing framework of choice is [Jest] and [React Testing Library] is also se
 
 [jest]: https://jestjs.io/ 'testing framework with a focus on simplicity'
 [react testing library]: https://testing-library.com/ 'testing utilities that encourage good testing practices'
+
+### Running e2e tests
+
+For these you **will** need the server running at http://localhost:3600/.
+
+We're using [Cypress] to ensure the app "actually works"™ in production, and to follow BDD with responsive-design and accessibility in mind.
+
+Responsive design especially, is tricky to meaningfully test using the Jest tests from the previous section. In contrast, edge-cases, mutating / destructive scenarios are trickier to test e2e and it's where the Jest tests shine!
+
+My blogpost on [BDD and E2E testing a responsive web app] sums up how we've set up all of this config during our live-streams on [Twitch] 🙂
+
+In any case, to develop the app with the tests running side-by-side the browser using the Cypress Dashboard, run:
+
+```sh
+yarn bdd
+```
+
+Our automated tests are defined in `.github/workflows/e2e.yml` and they essentially run the following command, only visiting the deployment url instead of the local server:
+
+```sh
+yarn e2e
+```
+
+[cypress]: https://www.cypress.io/ 'Fast, easy and reliable testing for anything that runs in a browser'
+[bdd and e2e testing a responsive web app]: https://magrippis.com/blog/2020/how-to-BDD-and-E2E-test-your-responsive-web-app-with-Cypress 'How to BDD and E2E test your responsive web app with Cypress'
+[twitch]: https://www.twitch.tv/jmagrippis 'What app will we be building when you visit?'
 
 ### License
 
