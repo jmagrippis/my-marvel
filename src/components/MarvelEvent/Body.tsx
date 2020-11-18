@@ -14,6 +14,9 @@ export const Body = ({ title, description, thumbnail }: Props) => (
         className="mx-auto mb-4 sm:mb-0 sm:ml-0 sm:mr-4"
       />
       <p>{description}</p>
+      <section aria-label="related">
+        <h2 className="text-xl">Featured characters</h2>
+      </section>
     </div>
   </main>
 )
