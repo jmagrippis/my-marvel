@@ -14,6 +14,12 @@ describe('event page', () => {
           .should('exist')
 
         cy.root().findByRole('img').should('exist')
+
+        cy.root()
+          .findByRole('region', { name: 'related' })
+          .within(($region) => {
+            cy.root().findByRole('heading', { name: /characters/i, level: 2 })
+          })
       })
 
       it('shows a 404 page for an event that does not exist', () => {
