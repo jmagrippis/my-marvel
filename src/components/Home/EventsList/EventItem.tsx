@@ -16,9 +16,7 @@ export const EventItem = ({ id, title, description, thumbnail }: Props) => (
       <h3 className="text-xl font-bold">{title}</h3>
       <p className="mb-2">{description}</p>
       <Link href={`/event/${id}`}>
-        <a className="text-lg bg-marvel-red border-2 border-red-500 hover:border-red-700 text-white shadow rounded px-4 py-1 hover:shadow-lg transition duration-300 mx-auto block sm:inline-block text-center">
-          read more
-        </a>
+        <a className="button block sm:inline-block">read more</a>
       </Link>
     </div>
   </article>
