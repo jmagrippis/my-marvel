@@ -12,8 +12,9 @@ export const getServerSideProps: GetServerSideProps<
   const { id } = context.query
 
   const response = await backendClient.fetchEvent(parseInt(id as string))
+  if (!response) return { notFound: true }
+
   const marvelEvent = backendClient.getEventFromResponse(response)
-  // show 404 page if !marvelEvent
 
   return {
     props: {

@@ -1,4 +1,6 @@
+import { AxiosError } from 'axios'
 import crypto from 'crypto'
+import { isAxiosError } from 'lib/isAxiosError'
 
 import { MarvelAPIClient } from './abstractClient'
 import { EventsResponse } from './types'
@@ -18,11 +20,17 @@ class BackendClient extends MarvelAPIClient {
   })
 
   fetchEvent = async (id: number) => {
-    const { data } = await this.client.get<EventsResponse>(`events/${id}`, {
-      params: this.#getAuthParams(),
-    })
+    const response = await this.client
+      .get<EventsResponse>(`events/${id}`, {
+        params: this.#getAuthParams(),
+      })
+      .catch((error: Error | AxiosError) => {
+        if (isAxiosError(error) && error.response?.status === 404) return null
 
-    return data
+        throw error
+      })
+
+    return response?.data
   }
 
   fetchEvents = async () => {

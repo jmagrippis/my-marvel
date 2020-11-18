@@ -15,6 +15,35 @@ describe('event page', () => {
 
         cy.root().findByRole('img').should('exist')
       })
+
+      it('shows a 404 page for an event that does not exist', () => {
+        cy.viewport(viewport)
+
+        // This event does not exist
+        cy.visit('event/4242424242', { failOnStatusCode: false })
+
+        cy.root()
+          .findByRole('heading', {
+            name: '404 - Zoinks!',
+            level: 1,
+          })
+          .should('exist')
+
+        cy.root()
+          .findByRole('heading', {
+            name: 'We couldn’t find what you were looking for',
+            level: 2,
+          })
+          .should('exist')
+
+        cy.root()
+          .findByRole('link', { name: /try again/ })
+          .click()
+
+        cy.location().should((loc) => {
+          expect(loc.pathname).to.eq('/')
+        })
+      })
     })
   })
 })

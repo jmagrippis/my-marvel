@@ -17,3 +17,24 @@ body > div {
   align-items: center;
   font-family: 'Kalam', cursive;
 }
+
+.button {
+  @apply text-lg;
+  @apply bg-marvel-red;
+  @apply border-2;
+  @apply border-red-500;
+  @apply text-white;
+  @apply shadow;
+  @apply rounded;
+  @apply px-4;
+  @apply py-1;
+  @apply transition;
+  @apply duration-300;
+  @apply mx-auto;
+  @apply text-center;
+}
+
+.button:hover {
+  @apply border-red-700;
+  @apply shadow-lg;
+}
